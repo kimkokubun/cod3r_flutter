@@ -1,4 +1,5 @@
 import 'package:cod3r_refeicao_app/models/meal.dart';
+import 'package:cod3r_refeicao_app/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class MealItem extends StatelessWidget {
@@ -6,14 +7,17 @@ class MealItem extends StatelessWidget {
 
   const MealItem(this.meal);
 
-  void _selectMeal() {
-    print("selected");
+  void _selectMeal(BuildContext buildContext) {
+    Navigator.of(buildContext).pushNamed(
+      AppRoutes.MEAL_DETAILS,
+      arguments: meal,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: _selectMeal,
+      onTap: () => _selectMeal(context),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -70,7 +74,8 @@ class MealItem extends StatelessWidget {
                       SizedBox(width: 6),
                       Text(meal.complexityText)
                     ],
-                  ), Row(
+                  ),
+                  Row(
                     children: [
                       Icon(Icons.attach_money),
                       SizedBox(width: 6),

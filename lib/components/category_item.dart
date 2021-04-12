@@ -1,5 +1,4 @@
 import 'package:cod3r_refeicao_app/models/category.dart';
-import 'package:cod3r_refeicao_app/screens/categories_meals_screen.dart';
 import 'package:cod3r_refeicao_app/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 

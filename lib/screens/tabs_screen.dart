@@ -26,6 +26,10 @@ class TabsScreen extends StatelessWidget {
         body: TabBarView(
           children: [CategoriesScreen(), FavoriteScreen()],
         ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.list),
+          onPressed: switchStepsType,
+        ),,
       ),
     );
   }

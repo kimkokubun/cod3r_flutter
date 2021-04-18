@@ -2,34 +2,53 @@ import 'package:cod3r_refeicao_app/screens/categorys_screen.dart';
 import 'package:cod3r_refeicao_app/screens/favorites_screen.dart';
 import 'package:flutter/material.dart';
 
-class TabsScreen extends StatelessWidget {
+class TabsScreen extends StatefulWidget {
+  @override
+  _TabsScreenState createState() => _TabsScreenState();
+}
+
+class _TabsScreenState extends State<TabsScreen> {
+  int _selectedScreenIndex = 0;
+  final List<Map<String, Object>> _screens = [
+    {'title': 'Lista de Categorias', 'screen': CategoriesScreen()},
+    {'title': 'Meus Favoritos', 'screen': FavoriteScreen()}
+  ];
+
+  _selectScreen(int index) {
+    setState(() {
+      _selectedScreenIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Vamos Cozinhar'),
-          bottom: TabBar(
-            tabs: [
-              Tab(
-                icon: Icon(Icons.category),
-                text: 'Categorias',
-              ),
-              Tab(
-                icon: Icon(Icons.star),
-                text: 'Favoritas',
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(_screens[_selectedScreenIndex]['title']),
+      ),
+      drawer: Drawer(
+        child: Text('Drawer'),
+      ),
+      body: _screens[_selectedScreenIndex]['screen'],
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _selectScreen,
+        backgroundColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Theme.of(context).accentColor,
+        currentIndex: _selectedScreenIndex,
+        // type: BottomNavigationBarType.shifting,
+        items: [
+          BottomNavigationBarItem(
+            // backgroundColor: Theme.of(context).primaryColor,
+            icon: Icon(Icons.category),
+            label: 'Categorias',
           ),
-        ),
-        body: TabBarView(
-          children: [CategoriesScreen(), FavoriteScreen()],
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.list),
-          onPressed: switchStepsType,
-        ),,
+          BottomNavigationBarItem(
+            // backgroundColor: Theme.of(context).primaryColor,
+            icon: Icon(Icons.star),
+            label: 'Favoritos',
+          )
+        ],
       ),
     );
   }

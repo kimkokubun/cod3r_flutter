@@ -1,3 +1,4 @@
+import 'package:cod3r_refeicao_app/components/main_drawer.dart';
 import 'package:cod3r_refeicao_app/screens/categorys_screen.dart';
 import 'package:cod3r_refeicao_app/screens/favorites_screen.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +27,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(_screens[_selectedScreenIndex]['title']),
       ),
-      drawer: Drawer(
-        child: Text('Drawer'),
-      ),
+      drawer: MainDrawer(),
       body: _screens[_selectedScreenIndex]['screen'],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectScreen,
